@@ -3,6 +3,7 @@
 import re
 import emoji
 import requests
+import argparse
 from bs4 import BeautifulSoup
 from colorama import init, Fore, Style
 
@@ -12,6 +13,8 @@ url = 'https://www.freshports.org/'
 # max number of port updates to show
 # tune this to your needs
 max_updates = 10
+
+basicFlag = False
 
 def showUpdates():
     init()
@@ -27,7 +30,11 @@ def showUpdates():
             break
 
         name, version = item.text.split(" ")
-        print("{} {: <50}{}".format(emoji.emojize(':package:'),
+        
+        if basicFlag:
+            print("{: <50}{}".format(name, version))
+        else:
+            print("{} {: <50}{}".format(emoji.emojize(':package:'),
                                 Fore.GREEN + Style.BRIGHT + name, 
                                 Fore.RED + Style.BRIGHT + version))
         count += 1 
@@ -36,4 +43,11 @@ def main():
     showUpdates()
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-b", "--basic", help="simple output", action="store_true")
+
+    args = parser.parse_args()
+
+    basicFlag = args.basic
+
     main()
