@@ -7,7 +7,7 @@ portupdate shows the newest updated FreeBSD ports and there version number.
 ## USAGE
 1. Install needed dependencies
 ```
-pip3 install emoji requests bs4 colorama
+$ pip3 install emoji requests bs4 colorama
 ```
 2. Run the script
 ```
