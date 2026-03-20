@@ -29,14 +29,15 @@ def showUpdates():
         if count >= max_updates:
             break
 
-        name, version = item.text.split(" ")
+        name, version = item.text.split(" ", 1)
         
         if basicFlag:
             print("{: <50}{}".format(name, version))
         else:
             print("{} {: <50}{}".format(emoji.emojize(':package:'),
                                 Fore.GREEN + Style.BRIGHT + name, 
-                                Fore.RED + Style.BRIGHT + version))
+                                Fore.RED + Style.BRIGHT + version,
+                                Style.RESET_ALL))
         count += 1 
 
 def main():
